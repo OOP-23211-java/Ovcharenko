@@ -6,8 +6,10 @@ import java.io.PrintWriter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class CsvParser {
 
@@ -43,6 +45,19 @@ public class CsvParser {
             counter++; // Увеличить счётчик слов на 1
         }
         return wordsWithCount;
+    }
+
+    // Сортировка
+    public static Map<String, Integer> sortByValueDescending(Map<String, Integer> map) {
+        return map.entrySet()
+                .stream()
+                .sorted((a, b) -> b.getValue().compareTo(a.getValue())) // Сортировка по убыванию
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        Map.Entry::getValue,
+                        (e1, e2) -> e1,
+                        LinkedHashMap::new
+                ));
     }
 
     // Создание csv файла (разобрать)

@@ -28,15 +28,7 @@ public class Main {
         int totalWords = CsvParser.counter; // Количество клов в .txt
 
         // Сортировка по убыванию частоты
-        Map<String, Integer> sortedMap = wordCountMap.entrySet()
-                .stream()
-                .sorted((a, b) -> b.getValue().compareTo(a.getValue())) // Сортировка по значению (по убыванию)
-                .collect(Collectors.toMap(
-                        Map.Entry::getKey,
-                        Map.Entry::getValue,
-                        (e1, _) -> e1, // Объединение дубликатов (не используется)
-                        LinkedHashMap::new // Сохраняем порядок сортировки
-                ));
+        Map<String, Integer> sortedMap = CsvParser.sortByValueDescending(wordCountMap);
 
         String outputFile = "word_frequency.csv";
 
