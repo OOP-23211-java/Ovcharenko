@@ -1,17 +1,24 @@
 package com.dovcharenko;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
-        // Чтение файла построчно
-//      List<String> strings = CsvParser.readFile("sample1.txt"); // Второй пример (война и мир, например)
-        List<String> strings = CsvParser.readFile("C:\\Users\\HP\\IdeaProjects\\lab0\\src\\main\\resources\\sample.txt");
-        // System.out.println(strings); // Вывод строчек (не обязательно/не нужно)
+        String fileName = "sample.txt";
+        List<String> strings = readFileFromResources(fileName);
+        if (strings == null || strings.isEmpty()) {
+            System.out.println("Файл пустой или не удалось считать");
+            return;
+        }
 
         // Преобразование списка строк в список слов
         List<String> words = CsvParser.convertTextLinesToWordsList(strings);
@@ -35,11 +42,15 @@ public class Main {
 
         // Запись в CSV
         CsvParser.createCsvFile(sortedMap, totalWords, outputFile);
-
-
-//        int count = map.get("слово");
-//        count++;
-//        map.put("слово", count);
-
     }
+
+    private static List<String> readFileFromResources(String fileName) throws IOException {
+        try (InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(fileName);
+             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
+             return reader.lines().toList();
+        } catch (Exception e) {
+            throw new IOException(e);
+        }
+    }
+
 }
