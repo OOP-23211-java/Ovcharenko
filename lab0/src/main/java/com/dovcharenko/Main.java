@@ -12,8 +12,12 @@ import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) throws IOException {
+        if (args.length == 0) {
+            System.out.println("Укажите имя файла в аргументах программы");
+            return;
+        }
 
-        String fileName = "sample.txt";
+        String fileName = args[0];
         List<String> strings = readFileFromResources(fileName);
         if (strings == null || strings.isEmpty()) {
             System.out.println("Файл пустой или не удалось считать");
