@@ -1,4 +1,4 @@
-package org.example;
+package com.dovcharenko;
 
 import java.util.LinkedHashMap;
 import java.util.List;

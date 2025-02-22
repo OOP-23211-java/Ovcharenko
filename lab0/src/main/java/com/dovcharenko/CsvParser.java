@@ -1,4 +1,4 @@
-package org.example;
+package com.dovcharenko;
 
 import java.io.FileWriter;
 import java.io.IOException;

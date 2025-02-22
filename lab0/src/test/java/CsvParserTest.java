@@ -1,4 +1,4 @@
-import org.example.CsvParser;
+import com.dovcharenko.CsvParser;
 import org.junit.Test;
 
 import java.nio.file.Files;
