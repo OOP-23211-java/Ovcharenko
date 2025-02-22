@@ -20,10 +20,10 @@ public class CsvParser {
         List<String> words = new ArrayList<>();
 
         for (String line : lines) {
-            String cleanedLine = line.replaceAll("[^a-zA-Zа-яА-ЯёЁ0-9\\s]", " "); // Замена на пробел всех символов кроме букв и цифр
-            String trimmed = cleanedLine.trim(); // Очистить строчку от пробелов в начале и конце
-            String[] splitWords = trimmed.split("\\s+"); // Разделить строчку на слова по пробелам
-            for (String word : splitWords) { // Проверка и добавление в массив слов
+            String cleanedLine = line.replaceAll("[^a-zA-Zа-яА-ЯёЁ0-9\\s]", " ");
+            String trimmed = cleanedLine.trim();
+            String[] splitWords = trimmed.split("\\s+");
+            for (String word : splitWords) {
                 if (!word.isEmpty()) {
                     words.add(word);
                 }
@@ -37,12 +37,12 @@ public class CsvParser {
     public static Map<String, Integer> convertWordsListToMapWithWordsCount(List<String> words) {
         Map<String, Integer> wordsWithCount = new HashMap<>();
         for (String word : words) {
-            if (wordsWithCount.containsKey(word)) { // Есть ли слово в мапе
-                wordsWithCount.put(word, wordsWithCount.get(word) + 1); // Да, уже есть, +1 к количеству
+            if (wordsWithCount.containsKey(word)) {
+                wordsWithCount.put(word, wordsWithCount.get(word) + 1);
             } else {
-                wordsWithCount.put(word, 1); // Нет, нету, добавить и указать количество 1
+                wordsWithCount.put(word, 1);
             }
-            counter++; // Увеличить счётчик слов на 1
+            counter++;
         }
         return wordsWithCount;
     }
