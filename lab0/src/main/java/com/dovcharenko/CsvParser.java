@@ -3,11 +3,7 @@ package com.dovcharenko;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
 
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,28 +12,6 @@ import java.util.Map;
 public class CsvParser {
 
     static int counter = 0; // Количество слов в .txt
-
-    // Метод чтения файла
-    public static List<String> readFile(String fileName) {
-        if (fileName == null || fileName.trim().isEmpty()){ // Проверка файла
-            System.err.println("Ошибка: не передан файл, либо пустое имя файла!:(");
-            System.exit(1); // Завершение работы программы с ошибкой
-        }
-
-        Path path = Paths.get(fileName); // Создаю путь к файлу
-        try {
-            return Files.readAllLines(path);
-        } catch (IOException e) {
-            System.err.println("Ошибка при чтении файла в стандартной кодировке. Пробуем Windows-1251...");
-            try {
-                return Files.readAllLines(path, Charset.forName("Windows-1251"));
-            } catch (IOException ex) {
-                System.err.println("Ошибка при чтении файла в кодировке Windows-1251: " + ex.getMessage());
-                System.exit(1);
-            }
-        }
-        return List.of(); // Заглушка
-    }
 
     // Метод конвертирования списка строк в список слов
     public static List<String> convertTextLinesToWordsList(List<String> lines) {

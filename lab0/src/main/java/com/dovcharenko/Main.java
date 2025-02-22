@@ -1,10 +1,6 @@
 package com.dovcharenko;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +14,7 @@ public class Main {
         }
 
         String fileName = args[0];
-        List<String> strings = readFileFromResources(fileName);
+        List<String> strings = FileReader.readFileFromResources(fileName);
         if (strings == null || strings.isEmpty()) {
             System.out.println("Файл пустой или не удалось считать");
             return;
@@ -46,15 +42,6 @@ public class Main {
 
         // Запись в CSV
         CsvParser.createCsvFile(sortedMap, totalWords, outputFile);
-    }
-
-    private static List<String> readFileFromResources(String fileName) throws IOException {
-        try (InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(fileName);
-             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
-             return reader.lines().toList();
-        } catch (Exception e) {
-            throw new IOException(e);
-        }
     }
 
 }
