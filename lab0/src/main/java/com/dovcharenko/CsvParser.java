@@ -60,7 +60,7 @@ public class CsvParser {
                 ));
     }
 
-    // Создание csv файла (разобрать)
+    // Создание csv файла
     public static void createCsvFile(Map<String, Integer> wordCountMap, int totalWords, String outputFile) {
         try (PrintWriter writer = new PrintWriter(new FileWriter(outputFile))) {
             writer.println("Слово, Частота, Частота (%)");

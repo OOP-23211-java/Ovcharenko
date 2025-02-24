@@ -7,8 +7,10 @@ import java.util.Map;
 public class Main {
     public static void main(String[] args) throws IOException {
         if (args.length == 0) {
-            System.out.println("Укажите имя файла в аргументах программы");
+            System.out.println("Укажите имя файла в аргументах программы.");
             return;
+        } else if (args.length > 1) {
+            System.out.println("Программа использует только первый аргумент. Остальные аргументы игнорируются.");
         }
 
         String fileName = args[0];
