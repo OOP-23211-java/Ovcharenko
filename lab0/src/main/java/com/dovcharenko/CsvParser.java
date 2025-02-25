@@ -10,22 +10,19 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class CsvParser {
 
     static int counter = 0; // Количество слов в .txt
 
     // Метод конвертирования списка слов в хеш мапу
-    public static Map<String, Integer> convertWordsListToMapWithWordsCount(List<String> words) {
+    public static Map<String, Integer> convertWordsListToMapWithWordsCount(Stream<String> wordsStream) {
         Map<String, Integer> wordsWithCount = new HashMap<>();
-        for (String word : words) {
-            if (wordsWithCount.containsKey(word)) {
-                wordsWithCount.put(word, wordsWithCount.get(word) + 1);
-            } else {
-                wordsWithCount.put(word, 1);
-            }
+        wordsStream.forEach(word -> {
+            wordsWithCount.put(word, wordsWithCount.getOrDefault(word, 0) + 1);
             counter++;
-        }
+        });
         return wordsWithCount;
     }
 
