@@ -15,24 +15,6 @@ public class CsvParser {
 
     static int counter = 0; // Количество слов в .txt
 
-    // Метод конвертирования списка строк в список слов
-    public static List<String> convertTextLinesToWordsList(List<String> lines) {
-        List<String> words = new ArrayList<>();
-
-        for (String line : lines) {
-            String cleanedLine = line.replaceAll("[^a-zA-Zа-яА-ЯёЁ0-9\\s]", " ");
-            String trimmed = cleanedLine.trim();
-            String[] splitWords = trimmed.split("\\s+");
-            for (String word : splitWords) {
-                if (!word.isEmpty()) {
-                    words.add(word);
-                }
-            }
-        }
-
-        return words;
-    }
-
     // Метод конвертирования списка слов в хеш мапу
     public static Map<String, Integer> convertWordsListToMapWithWordsCount(List<String> words) {
         Map<String, Integer> wordsWithCount = new HashMap<>();
